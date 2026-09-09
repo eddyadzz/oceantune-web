@@ -191,6 +191,35 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Featured Brands */}
+      <section className="pb-20 sm:pb-28 bg-background">
+        <div className="container-wide">
+          <p className="text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-8">
+            Brands We Work With
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-20">
+            {/* Yamaha */}
+            <div className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+              <span className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                YAMAHA
+              </span>
+            </div>
+            {/* Suzuki */}
+            <div className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+              <span className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                SUZUKI
+              </span>
+            </div>
+            {/* Mercury */}
+            <div className="flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+              <span className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+                Mercury
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

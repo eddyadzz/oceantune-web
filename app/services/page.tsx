@@ -72,12 +72,17 @@ export default function ServicesPage() {
                     ))}
                   </ul>
 
-                  <Button asChild variant="outline" className="rounded-full group">
-                    <Link href="/contact">
-                      Enquire About This Service
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button asChild variant="outline" className="rounded-full group">
+                      <Link href={`/services/${service.slug}`}>
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                    <Button asChild className="rounded-full">
+                      <Link href="/contact">Enquire</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             );

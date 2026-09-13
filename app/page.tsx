@@ -42,7 +42,7 @@ export default function Home() {
                       {service.shortDescription}
                     </p>
                     <Link
-                      href="/services"
+                      href={`/services/${service.slug}`}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-secondary group/link"
                     >
                       Learn More
@@ -115,9 +115,10 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {portfolioItems.slice(0, 6).map((item, idx) => (
-              <div
+              <Link
                 key={idx}
-                className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                href={`/portfolio/${item.slug}`}
+                className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block"
               >
                 <div className="relative aspect-[4/3]">
                   <Image
@@ -140,7 +141,7 @@ export default function Home() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

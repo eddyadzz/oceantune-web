@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { PageHero } from '@/components/site/page-hero';
 import { portfolioItems, portfolioCategories } from '@/lib/site-data';
@@ -45,9 +46,10 @@ export default function PortfolioPage() {
           {/* Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((item, idx) => (
-              <div
+              <Link
                 key={`${item.title}-${idx}`}
-                className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                href={`/portfolio/${item.slug}`}
+                className="group relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block"
               >
                 <div className="relative aspect-[4/3]">
                   <Image
@@ -70,7 +72,7 @@ export default function PortfolioPage() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

@@ -36,6 +36,8 @@ export type Service = {
   icon: LucideIcon;
   image: string;
   features: string[];
+  gallery: string[];
+  process: { step: string; description: string }[];
 };
 
 export const services: Service[] = [
@@ -45,7 +47,7 @@ export const services: Service[] = [
     shortDescription:
       'Quality spare parts, maintenance supplies, and technical support for Yamaha, Suzuki, and Mercury outboard engines.',
     longDescription:
-      'We supply reliable marine spare parts and maintenance essentials for outboard engines. Our team provides expert technical consultation to keep your vessels running smoothly in Maldivian waters.',
+      'We supply reliable marine spare parts and maintenance essentials for outboard engines. Our team provides expert technical consultation to keep your vessels running smoothly in Maldivian waters. Whether you need a single spark plug or a complete engine service kit, we source genuine OEM parts and deliver them island-wide.',
     icon: Anchor,
     image:
       'https://images.pexels.com/photos/9592461/pexels-photo-9592461.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -56,6 +58,18 @@ export const services: Service[] = [
       'Spark plugs',
       'Technical consultation',
     ],
+    gallery: [
+      'https://images.pexels.com/photos/9592461/pexels-photo-9592461.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8669061/pexels-photo-8669061.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/30094170/pexels-photo-30094170.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/16135856/pexels-photo-16135856.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    process: [
+      { step: 'Identify', description: 'Tell us your engine make, model, and the parts you need.' },
+      { step: 'Source', description: 'We source genuine OEM parts from trusted suppliers.' },
+      { step: 'Deliver', description: 'Parts delivered to your island or vessel across the Maldives.' },
+      { step: 'Support', description: 'Technical guidance on installation and maintenance.' },
+    ],
   },
   {
     slug: 'construction-services',
@@ -63,7 +77,7 @@ export const services: Service[] = [
     shortDescription:
       'From masonry and renovations to complete finishing work — building with confidence.',
     longDescription:
-      'Our construction team handles everything from masonry and renovations to complete finishing work. We deliver quality craftsmanship for residential and commercial property improvements.',
+      'Our construction team handles everything from masonry and renovations to complete finishing work. We deliver quality craftsmanship for residential and commercial property improvements. Every project is managed with attention to detail, from the initial assessment through to final handover, ensuring results that stand the test of time in the island environment.',
     icon: Hammer,
     image:
       'https://images.pexels.com/photos/15798782/pexels-photo-15798782.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -73,6 +87,18 @@ export const services: Service[] = [
       'Finishing work',
       'Property improvements',
     ],
+    gallery: [
+      'https://images.pexels.com/photos/15798782/pexels-photo-15798782.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/19688828/pexels-photo-19688828.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/37352217/pexels-photo-37352217.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/30415240/pexels-photo-30415240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    process: [
+      { step: 'Consult', description: 'On-site visit to assess scope and discuss your vision.' },
+      { step: 'Quote', description: 'Detailed quotation covering materials, labour, and timeline.' },
+      { step: 'Build', description: 'Skilled crew executes the work with quality materials.' },
+      { step: 'Finish', description: 'Final inspection and handover with your approval.' },
+    ],
   },
   {
     slug: 'photography-printing',
@@ -80,7 +106,7 @@ export const services: Service[] = [
     shortDescription:
       'Professional printing services for photos, events, and businesses — transform moments into memories.',
     longDescription:
-      'We offer professional photo printing, custom products, and business printing services. From event materials to custom prints, we help you preserve moments and promote your brand.',
+      'We offer professional photo printing, custom products, and business printing services. From event materials to custom prints, we help you preserve moments and promote your brand. Our printing service covers everything from large-format photo prints to business cards, brochures, and event materials — all produced with attention to colour accuracy and finish quality.',
     icon: Camera,
     image:
       'https://images.pexels.com/photos/7014874/pexels-photo-7014874.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -90,6 +116,18 @@ export const services: Service[] = [
       'Business printing',
       'Event materials',
     ],
+    gallery: [
+      'https://images.pexels.com/photos/7014874/pexels-photo-7014874.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/7014941/pexels-photo-7014941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/716272/pexels-photo-716272.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/17536002/pexels-photo-17536002.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    process: [
+      { step: 'Submit', description: 'Share your files or tell us what you need printed.' },
+      { step: 'Review', description: 'We confirm specs — size, paper, finish, and quantity.' },
+      { step: 'Print', description: 'High-quality printing with colour-accurate output.' },
+      { step: 'Deliver', description: 'Ready for pickup or delivery to your location.' },
+    ],
   },
   {
     slug: 'administrative-support',
@@ -97,7 +135,7 @@ export const services: Service[] = [
     shortDescription:
       'Helping individuals and businesses navigate online services and administrative processes.',
     longDescription:
-      'We simplify digital services for individuals and businesses. From form assistance and online accounts to data entry and digital payment support, we make administrative processes hassle-free.',
+      'We simplify digital services for individuals and businesses. From form assistance and online accounts to data entry and digital payment support, we make administrative processes hassle-free. Our team stays up to date with government portals and online platforms so you don&apos;t have to — saving you time and avoiding costly mistakes.',
     icon: MonitorSmartphone,
     image:
       'https://images.pexels.com/photos/8296975/pexels-photo-8296975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -107,6 +145,18 @@ export const services: Service[] = [
       'Data entry',
       'Digital payment support',
     ],
+    gallery: [
+      'https://images.pexels.com/photos/8296975/pexels-photo-8296975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8111877/pexels-photo-8111877.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/7654450/pexels-photo-7654450.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8473782/pexels-photo-8473782.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    process: [
+      { step: 'Tell Us', description: 'Explain the task or process you need help with.' },
+      { step: 'Plan', description: 'We outline what&apos;s needed and confirm the approach.' },
+      { step: 'Execute', description: 'We complete the work accurately and on time.' },
+      { step: 'Confirm', description: 'You review and approve the completed work.' },
+    ],
   },
   {
     slug: 'graphic-web-design',
@@ -114,7 +164,7 @@ export const services: Service[] = [
     shortDescription:
       'Professional graphic design and web solutions that help businesses communicate and grow.',
     longDescription:
-      'Our creative team delivers professional graphic design and web solutions. From flyers and brochures to branding and website design, we help your business stand out and connect with customers.',
+      'Our creative team delivers professional graphic design and web solutions. From flyers and brochures to branding and website design, we help your business stand out and connect with customers. We combine clean design principles with practical functionality — so your brand looks professional and your website actually works for your customers.',
     icon: Palette,
     image:
       'https://images.pexels.com/photos/326514/pexels-photo-326514.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -123,6 +173,18 @@ export const services: Service[] = [
       'Brochures',
       'Branding',
       'Website design',
+    ],
+    gallery: [
+      'https://images.pexels.com/photos/326514/pexels-photo-326514.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/326518/pexels-photo-326518.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8546649/pexels-photo-8546649.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8038330/pexels-photo-8038330.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    process: [
+      { step: 'Brief', description: 'Share your goals, audience, and design preferences.' },
+      { step: 'Concept', description: 'We present initial design concepts for feedback.' },
+      { step: 'Refine', description: 'Revisions based on your input until it&apos;s right.' },
+      { step: 'Deliver', description: 'Final files and assets ready for use.' },
     ],
   },
 ];
@@ -211,54 +273,113 @@ export const whyChooseFeatures: Feature[] = [
 ];
 
 export type PortfolioItem = {
+  slug: string;
   title: string;
   category: string;
   description: string;
   image: string;
+  gallery: string[];
+  client: string;
+  scope: string;
+  outcome: string;
 };
 
 export const portfolioItems: PortfolioItem[] = [
   {
+    slug: 'outboard-engine-supply',
     title: 'Outboard Engine Supply',
     category: 'Marine',
     description: 'Complete spare parts kit for Yamaha outboard engines delivered to a local resort.',
     image:
       'https://images.pexels.com/photos/30094170/pexels-photo-30094170.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/30094170/pexels-photo-30094170.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/9592461/pexels-photo-9592461.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8669061/pexels-photo-8669061.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Local island resort',
+    scope: 'Sourcing and delivery of OEM spare parts, engine oil, and filters for a fleet of Yamaha outboard engines.',
+    outcome: 'Resort maintenance team received all parts within the agreed timeframe, minimising vessel downtime.',
   },
   {
+    slug: 'island-property-renovation',
     title: 'Island Property Renovation',
     category: 'Construction',
     description: 'Full renovation and finishing of a residential property in Nellaidhoo.',
     image:
       'https://images.pexels.com/photos/37352217/pexels-photo-37352217.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/37352217/pexels-photo-37352217.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/19688828/pexels-photo-19688828.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/15798782/pexels-photo-15798782.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Private homeowner',
+    scope: 'Complete renovation including masonry, plastering, painting, and finishing work for a family residence.',
+    outcome: 'Property restored to modern standards with improved durability against the coastal climate.',
   },
   {
+    slug: 'event-photography-print-run',
     title: 'Event Photography Print Run',
     category: 'Printing',
     description: 'Large-format photo printing and event materials for a corporate gathering.',
     image:
       'https://images.pexels.com/photos/716272/pexels-photo-716272.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/716272/pexels-photo-716272.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/7014874/pexels-photo-7014874.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/17536002/pexels-photo-17536002.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Corporate event organiser',
+    scope: 'Large-format photo prints, event banners, and printed materials for a corporate gathering.',
+    outcome: 'All materials delivered on time with accurate colour reproduction, enhancing the event experience.',
   },
   {
+    slug: 'resort-brand-identity',
     title: 'Resort Brand Identity',
     category: 'Design',
     description: 'Complete brand package including logo, brochures, and promotional flyers.',
     image:
       'https://images.pexels.com/photos/326518/pexels-photo-326518.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/326518/pexels-photo-326518.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8546649/pexels-photo-8546649.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/326514/pexels-photo-326514.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Boutique island resort',
+    scope: 'Logo design, brand guidelines, brochures, and promotional flyers for a new resort launch.',
+    outcome: 'Cohesive brand identity that reflected the resort&apos;s island character and attracted bookings.',
   },
   {
+    slug: 'business-website-launch',
     title: 'Business Website Launch',
     category: 'Web',
     description: 'Modern responsive website for a local marine transport company.',
     image:
       'https://images.pexels.com/photos/326516/pexels-photo-326516.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/326516/pexels-photo-326516.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/326514/pexels-photo-326514.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/8038330/pexels-photo-8038330.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Marine transport company',
+    scope: 'Responsive website design and development with service pages and an enquiry contact form.',
+    outcome: 'Launched a fast, mobile-friendly site that increased direct booking enquiries.',
   },
   {
+    slug: 'building-restoration',
     title: 'Building Restoration',
     category: 'Construction',
     description: 'Facade restoration and plaster work for a commercial building.',
     image:
       'https://images.pexels.com/photos/30415240/pexels-photo-30415240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    gallery: [
+      'https://images.pexels.com/photos/30415240/pexels-photo-30415240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/2333694/pexels-photo-2333694.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      'https://images.pexels.com/photos/37352217/pexels-photo-37352217.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    ],
+    client: 'Commercial property owner',
+    scope: 'Facade restoration including plaster repair, surface preparation, and protective finishing.',
+    outcome: 'Building exterior restored with improved weather resistance and a refreshed appearance.',
   },
 ];
 

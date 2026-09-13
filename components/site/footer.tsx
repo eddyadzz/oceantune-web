@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Waves, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { company, footerLinks } from '@/lib/site-data';
+import { Logo } from '@/components/site/logo';
 
 export function Footer() {
   return (
@@ -14,11 +15,8 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Company info */}
           <div className="lg:col-span-2 max-w-sm">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 backdrop-blur-md">
-                <Waves className="h-5 w-5" />
-              </div>
-              <span className="font-heading text-xl font-bold">Ocean Tune</span>
+            <Link href="/" className="mb-5 block">
+              <Logo variant="light" />
             </Link>
             <p className="text-white/70 leading-relaxed mb-6">
               {company.description}

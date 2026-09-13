@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, Waves, Phone } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,6 +14,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { navLinks, company } from '@/lib/site-data';
+import { Logo } from '@/components/site/logo';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -40,25 +41,8 @@ export function Navbar() {
       )}
     >
       <nav className="container-wide flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div
-            className={cn(
-              'flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110',
-              scrolled
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-white/15 backdrop-blur-md text-white'
-            )}
-          >
-            <Waves className="h-5 w-5" />
-          </div>
-          <span
-            className={cn(
-              'font-heading text-xl font-bold transition-colors',
-              scrolled ? 'text-primary' : 'text-white'
-            )}
-          >
-            Ocean Tune
-          </span>
+        <Link href="/" className="group">
+          <Logo variant={scrolled ? 'dark' : 'light'} />
         </Link>
 
         {/* Desktop nav */}
@@ -119,10 +103,7 @@ export function Navbar() {
           <SheetContent side="right" className="w-full sm:max-w-sm">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2.5 text-left">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                  <Waves className="h-5 w-5" />
-                </div>
-                Ocean Tune
+                <Logo size="sm" />
               </SheetTitle>
             </SheetHeader>
             <div className="mt-8 flex flex-col gap-1">

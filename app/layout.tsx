@@ -47,6 +47,11 @@ export const metadata: Metadata = {
     description:
       'Marine supplies, construction, printing, design, and digital support — all through a single trusted Maldivian provider.',
   },
+  // Served dynamically from app/icon/route.ts → uses the CMS logo
+  // (brand.logoImage) when one is uploaded, otherwise the default logo.
+  icons: {
+    icon: '/icon',
+  },
 };
 
 export default function RootLayout({

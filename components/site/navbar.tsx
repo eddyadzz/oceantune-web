@@ -13,10 +13,21 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { navLinks, company } from '@/lib/site-data';
+import { navLinks as defaultNavLinks, company as defaultCompany } from '@/lib/site-data';
 import { Logo } from '@/components/site/logo';
 
-export function Navbar() {
+type NavLink = { href: string; label: string };
+type CompanyInfo = typeof defaultCompany;
+
+export function Navbar({
+  links = defaultNavLinks,
+  company = defaultCompany,
+  logoImage,
+}: {
+  links?: NavLink[];
+  company?: CompanyInfo;
+  logoImage?: string;
+}) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,12 +53,12 @@ export function Navbar() {
     >
       <nav className="container-wide flex items-center justify-between">
         <Link href="/" className="group">
-          <Logo variant={scrolled ? 'dark' : 'light'} />
+          <Logo variant={scrolled ? 'dark' : 'light'} image={logoImage} name={company.name} />
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => {
+          {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
@@ -103,11 +114,11 @@ export function Navbar() {
           <SheetContent side="right" className="w-full sm:max-w-sm">
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2.5 text-left">
-                <Logo size="sm" />
+                <Logo size="sm" image={logoImage} name={company.name} />
               </SheetTitle>
             </SheetHeader>
             <div className="mt-8 flex flex-col gap-1">
-              {navLinks.map((link) => {
+              {links.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link

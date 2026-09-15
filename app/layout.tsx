@@ -1,9 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
-import { Navbar } from '@/components/site/navbar';
-import { Footer } from '@/components/site/footer';
 import { Toaster } from '@/components/ui/sonner';
+
+// CMS content is served from the database at request time, so every page is
+// rendered dynamically (never cached at build time).
+export const dynamic = 'force-dynamic';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -55,9 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="font-sans">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {children}
         <Toaster richColors position="top-center" />
       </body>
     </html>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { Send, Loader2 } from 'lucide-react';
+import { Send, Loader2, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,9 +14,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { services, company } from '@/lib/site-data';
+import { services as defaultServices, company as defaultCompany } from '@/lib/site-data';
 
-export function ContactForm() {
+export function ContactForm({
+  services = defaultServices.map((s) => s.title),
+  phone = defaultCompany.phone,
+}: {
+  services?: string[];
+  phone?: string;
+}) {
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: '',
@@ -25,6 +31,12 @@ export function ContactForm() {
     service: '',
     message: '',
   });
+
+  const phoneDigits = phone.replace(/\D/g, '');
+  const whatsappMessage = `Hello Ocean Tune! I'm interested in your services${
+    form.service ? ` (${form.service})` : ''
+  }. Could you tell me more?`;
+  const whatsappHref = `https://wa.me/${phoneDigits}?text=${encodeURIComponent(whatsappMessage)}`;
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -41,20 +53,16 @@ export function ContactForm() {
     setSubmitting(true);
 
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${company.email}`, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          ...form,
-          _subject: `New enquiry from ${form.name} — Ocean Tune`,
-          _template: 'table',
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
       });
 
-      if (!res.ok) throw new Error('Failed to send');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Failed to send');
+      }
 
       toast.success('Thank you! Your message has been sent. We will be in touch soon.');
       setForm({ name: '', phone: '', email: '', service: '', message: '' });
@@ -114,8 +122,8 @@ export function ContactForm() {
             </SelectTrigger>
             <SelectContent>
               {services.map((s) => (
-                <SelectItem key={s.slug} value={s.title}>
-                  {s.title}
+                <SelectItem key={s} value={s}>
+                  {s}
                 </SelectItem>
               ))}
               <SelectItem value="Other">Other</SelectItem>
@@ -136,24 +144,39 @@ export function ContactForm() {
         />
       </div>
 
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full sm:w-auto rounded-full"
-        disabled={submitting}
-      >
-        {submitting ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Sending...
-          </>
-        ) : (
-          <>
-            <Send className="mr-2 h-4 w-4" />
-            Send Message
-          </>
+      <div className="flex flex-wrap items-center gap-3">
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full sm:w-auto rounded-full"
+          disabled={submitting}
+        >
+          {submitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send className="mr-2 h-4 w-4" />
+              Send Message
+            </>
+          )}
+        </Button>
+        {phoneDigits && (
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto rounded-full border-emerald-600 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800"
+          >
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="mr-2 h-4 w-4" />
+              Contact on WhatsApp
+            </a>
+          </Button>
         )}
-      </Button>
+      </div>
     </form>
   );
 }

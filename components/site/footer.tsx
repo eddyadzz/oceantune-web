@@ -1,9 +1,22 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
-import { company, footerLinks } from '@/lib/site-data';
+import { company as defaultCompany, footerLinks as defaultFooterLinks } from '@/lib/site-data';
 import { Logo } from '@/components/site/logo';
 
-export function Footer() {
+type NavLink = { href: string; label: string };
+type CompanyInfo = typeof defaultCompany;
+
+export function Footer({
+  company = defaultCompany,
+  navLinks = defaultFooterLinks,
+  logoImage,
+  copyright,
+}: {
+  company?: CompanyInfo;
+  navLinks?: NavLink[];
+  logoImage?: string;
+  copyright?: string;
+}) {
   return (
     <footer className="relative gradient-ocean-dark text-white overflow-hidden">
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -16,7 +29,7 @@ export function Footer() {
           {/* Company info */}
           <div className="lg:col-span-2 max-w-sm">
             <Link href="/" className="mb-5 block">
-              <Logo variant="light" />
+              <Logo variant="light" image={logoImage} name={company.name} />
             </Link>
             <p className="text-white/70 leading-relaxed mb-6">
               {company.description}
@@ -46,7 +59,7 @@ export function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {footerLinks.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -93,7 +106,9 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/50">
-            &copy; {new Date().getFullYear()} {company.legalName}. All rights reserved.
+            {copyright && copyright.trim()
+              ? copyright
+              : `© ${new Date().getFullYear()} ${company.legalName}. All rights reserved.`}
           </p>
           <div className="flex gap-6 text-sm">
             <Link href="/privacy-policy" className="text-white/50 hover:text-secondary transition-colors">

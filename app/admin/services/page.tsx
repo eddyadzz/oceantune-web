@@ -1,0 +1,74 @@
+'use client';
+
+import Image from 'next/image';
+import { Badge } from '@/components/ui/badge';
+import { ResourceManager, type FieldDef, type ColumnDef } from '@/components/admin/resource-manager';
+
+const fields: FieldDef[] = [
+  { type: 'slug', key: 'slug', label: 'Slug' },
+  { type: 'text', key: 'title', label: 'Title' },
+  { type: 'textarea', key: 'shortDescription', label: 'Short description', rows: 3 },
+  { type: 'textarea', key: 'longDescription', label: 'Long description', rows: 6 },
+  { type: 'icon', key: 'icon', label: 'Icon' },
+  { type: 'image', key: 'image', label: 'Cover image' },
+  { type: 'stringList', key: 'features', label: 'Features / What’s included' },
+  { type: 'urlList', key: 'gallery', label: 'Gallery images' },
+  { type: 'processList', key: 'process', label: 'Process steps' },
+  { type: 'number', key: 'order', label: 'Order' },
+  { type: 'toggle', key: 'active', label: 'Visible on website' },
+];
+
+const columns: ColumnDef[] = [
+  {
+    key: 'title',
+    label: 'Service',
+    render: (row) => (
+      <div>
+        <p className="font-medium">{String(row.title)}</p>
+        <p className="text-xs text-muted-foreground">/{String(row.slug)}</p>
+      </div>
+    ),
+  },
+  {
+    key: 'image',
+    label: 'Image',
+    render: (row) =>
+      row.image ? (
+        <div className="relative h-12 w-20 overflow-hidden rounded-md">
+          <Image src={String(row.image)} alt="" fill sizes="80px" unoptimized className="object-cover" />
+        </div>
+      ) : (
+        '—'
+      ),
+  },
+  {
+    key: 'active',
+    label: 'Status',
+    render: (row) => <Badge variant={row.active ? 'default' : 'secondary'}>{row.active ? 'Live' : 'Hidden'}</Badge>,
+  },
+];
+
+export default function AdminServicesPage() {
+  return (
+    <ResourceManager
+      resource="services"
+      title="Services"
+      description="Full CRUD for services shown on the homepage, services list, and service detail pages."
+      fields={fields}
+      columns={columns}
+      defaults={{
+        slug: '',
+        title: '',
+        shortDescription: '',
+        longDescription: '',
+        icon: 'Anchor',
+        image: '',
+        features: [],
+        gallery: [],
+        process: [],
+        order: 0,
+        active: true,
+      }}
+    />
+  );
+}

@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum MenuPlacement {
+  NAV
+  FOOTER
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(EDITOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String   @default("Ocean Tune")
+  legalName   String   @default("Ocean Tune Private Limited")
+  tagline     String   @default("Practical Solutions for Modern Maldives")
+  address     String   @default("")
+  phone       String   @default("")
+  email       String   @default("")
+  description String   @default("")
+  facebookUrl String   @default("")
+  instagramUrl String  @default("")
+  twitterUrl  String   @default("")
+  linkedinUrl String   @default("")
+  updatedAt   DateTime @updatedAt
+}
+
+model Setting {
+  key   String @id
+  value String @db.Text
+}
+
+model MenuItem {
+  id        String         @id @default(cuid())
+  placement MenuPlacement  @default(NAV)
+  href      String
+  label     String
+  order     Int            @default(0)
+}
+
+model CarouselSlide {
+  id          String  @id @default(cuid())
+  title       String
+  headline    String
+  description String  @db.Text
+  image       String
+  icon        String  @default("Anchor")
+  order       Int     @default(0)
+  active      Boolean @default(true)
+}
+
+model Service {
+  id               String  @id @default(cuid())
+  slug             String  @unique
+  title            String
+  shortDescription String  @db.Text
+  longDescription  String  @db.Text
+  icon             String  @default("Anchor")
+  image            String
+  features         Json
+  gallery          Json
+  process          Json
+  order            Int     @default(0)
+  active           Boolean @default(true)
+}
+
+model WhyFeature {
+  id          String @id @default(cuid())
+  title       String
+  description String @db.Text
+  icon        String @default("Users")
+  order       Int    @default(0)
+}
+
+model Value {
+  id          String @id @default(cuid())
+  title       String
+  description String @db.Text
+  icon        String @default("ShieldCheck")
+  order       Int    @default(0)
+}
+
+model Stat {
+  id    String @id @default(cuid())
+  value String
+  label String
+  order Int    @default(0)
+}
+
+model Brand {
+  id    String @id @default(cuid())
+  name  String
+  image String @default("")
+  order Int    @default(0)
+}
+
+model PortfolioItem {
+  id          String  @id @default(cuid())
+  slug        String  @unique
+  title       String
+  category    String
+  description String  @db.Text
+  image       String
+  gallery     Json
+  client      String
+  scope       String  @db.Text
+  outcome     String  @db.Text
+  order       Int     @default(0)
+  active      Boolean @default(true)
+}
+
+model Page {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  metaTitle       String
+  metaDescription String   @db.Text
+  heroTitle       String
+  heroDescription String   @db.Text
+  sections        Json
+  lastUpdated     DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model MediaFile {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  url       String
+  name      String
+  createdAt DateTime @default(now())
+}

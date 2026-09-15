@@ -6,12 +6,33 @@ import Link from 'next/link';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { carouselSlides } from '@/lib/site-data';
+import { resolveIcon } from '@/lib/icons';
 
-export function HeroCarousel() {
+type Slide = {
+  title: string;
+  description: string;
+  image: string;
+  icon: string;
+};
+
+const DEFAULT_SLIDES: Slide[] = [];
+
+export function HeroCarousel({
+  slides,
+  headline,
+  headlineAccent,
+  description,
+}: {
+  slides: Slide[];
+  headline: string;
+  headlineAccent: string;
+  description: string;
+}) {
+  const items = slides.length > 0 ? slides : DEFAULT_SLIDES;
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const count = carouselSlides.length;
+  const count = items.length;
+  const ActiveIcon = items[active]?.icon ? resolveIcon(items[active].icon) : null;
 
   const next = useCallback(() => setActive((p) => (p + 1) % count), [count]);
   const prev = useCallback(() => setActive((p) => (p - 1 + count) % count), [count]);
@@ -29,7 +50,7 @@ export function HeroCarousel() {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Background slides */}
-      {carouselSlides.map((slide, idx) => (
+      {items.map((slide, idx) => (
         <div
           key={idx}
           className={cn(
@@ -58,19 +79,21 @@ export function HeroCarousel() {
               className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-md px-4 py-1.5 mb-6 animate-fade-in"
               key={active}
             >
-              {(() => {
-                const Icon = carouselSlides[active].icon;
-                return <Icon className="h-4 w-4 text-secondary" />;
-              })()}
+              {ActiveIcon && <ActiveIcon className="h-4 w-4 text-secondary" />}
               <span className="text-sm font-medium text-white/90">
-                {carouselSlides[active].title}
+                {items[active].title}
               </span>
             </div>
 
             {/* Main headline (always visible, not changing per slide) */}
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] text-balance mb-6">
-              Practical Solutions for{' '}
-              <span className="gradient-text">Modern Maldives</span>
+              {headline}
+              {headlineAccent && (
+                <>
+                  {' '}
+                  <span className="gradient-text">{headlineAccent}</span>
+                </>
+              )}
             </h1>
 
             {/* Slide-specific description */}
@@ -78,8 +101,7 @@ export function HeroCarousel() {
               key={`desc-${active}`}
               className="text-lg text-white/80 leading-relaxed mb-8 max-w-2xl animate-fade-in"
             >
-              From marine supplies and construction services to design, printing, and digital
-              support, Ocean Tune helps individuals and businesses get things done.
+              {description}
             </p>
 
             {/* CTA buttons */}
@@ -109,7 +131,7 @@ export function HeroCarousel() {
           <div className="flex items-center justify-between">
             {/* Dots */}
             <div className="flex items-center gap-2">
-              {carouselSlides.map((_, idx) => (
+              {items.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActive(idx)}
